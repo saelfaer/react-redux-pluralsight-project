@@ -34,6 +34,7 @@
     "no-alert": "off",
     "no-lone-blocks": "off",
     "jsx-quotes": "warn",
+    "import/no-named-as-default": "off",
     "react/display-name": [ "warn", {"ignoreTranspilerName": false }],
     "react/forbid-prop-types": ["warn", {"forbid": ["any"]}],
     "react/jsx-boolean-value": "warn",
