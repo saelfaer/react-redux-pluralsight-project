@@ -1,6 +1,6 @@
 # Some todo points to really try everything out
 
-* fix detail course page
+* ~~fix detail course page~~
 * Administration of Authors
   * cannot delete authors who has course
 * hide course list when all courses would be deleted
