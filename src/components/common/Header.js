@@ -7,7 +7,7 @@ const Header = ({loading}) => {
     <nav className="navbar navbar-default">
       <div className="container-fluid">
         <div className="navbar-header">
-          <IndexLink to="/" className="navbar-brand" activeClassName="active">Pluralsight Admin</IndexLink>
+          <IndexLink to="/" className="navbar-brand" activeClassName="active">Courses Admin</IndexLink>
 
           <ul className="nav navbar-nav">
             <li><Link to="/about" activeClassName="active">About</Link></li>
