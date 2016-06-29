@@ -2,6 +2,12 @@
 
 * ~~fix detail course page~~
 * Administration of Authors
+  * ~~add author actions~~
+  * ~~add author reducers~~
+  * add author thunks
+  * add author administration page
+  * add author form
+  * add author routes
   * cannot delete authors who has course
 * hide course list when all courses would be deleted
 * message if unsaved form

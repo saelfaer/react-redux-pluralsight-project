@@ -19,6 +19,46 @@ describe('Author Actions', () => {
       expect(action).toEqual(expectedAction);
     });
   });
+
+  describe('createAuthorSuccessAction', () => {
+    it('should create a CREATE_AUTHOR_SUCCESS action', () => {
+      const author = {id: 'john-doe', firstName: 'John', lastName: 'Doe'};
+      const expectedAction = {
+        type: types.CREATE_AUTHOR_SUCCESS,
+        author
+      };
+
+      const action = authorActions.createAuthorSuccess(author);
+      expect(action).toEqual(expectedAction);
+    });
+  });
+
+  describe('updateAuthorSuccessAction', () => {
+    it('should create a UPDATE_AUTHOR_SUCCESS action', () => {
+      const author = {id: 'john-doe', firstName: 'John', lastName: 'Doe'};
+      const expectedAction = {
+        type: types.UPDATE_AUTHOR_SUCCESS,
+        author
+      };
+
+      const action = authorActions.updateAuthorSuccess(author);
+      expect(action).toEqual(expectedAction);
+    });
+  });
+
+  describe('deleteAuthorSuccessAction', () => {
+    it('should create a DELETE_AUTHOR_SUCCESS action', () => {
+      const authorId = 'john-doe';
+      const expectedAction = {
+        type: types.DELETE_AUTHOR_SUCCESS,
+        authorId
+      };
+
+      const action = authorActions.deleteAuthorSuccess(authorId);
+      expect(action).toEqual(expectedAction);
+    });
+  });
+
 });
 
 const middleware = [thunk];

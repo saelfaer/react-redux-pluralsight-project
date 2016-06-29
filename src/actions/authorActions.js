@@ -9,6 +9,27 @@ export function loadAuthorsSuccess(authors) {
   };
 }
 
+export function createAuthorSuccess(author) {
+  return {
+    type: types.CREATE_AUTHOR_SUCCESS,
+    author
+  };
+}
+
+export function updateAuthorSuccess(author) {
+  return {
+    type: types.UPDATE_AUTHOR_SUCCESS,
+    author
+  };
+}
+
+export function deleteAuthorSuccess(authorId) {
+  return {
+    type: types.DELETE_AUTHOR_SUCCESS,
+    authorId
+  };
+}
+
 export function loadAuthors() {
   return dispatch => {
     dispatch(beginAjaxCall());
