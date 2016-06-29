@@ -79,7 +79,7 @@ describe('Course Actions', () => {
 const middleware = [thunk];
 const mockStore = configureMockStore(middleware);
 
-describe('Async Actions', () => {
+describe('Course Async Actions', () => {
   afterEach(() => {
     nock.cleanAll();
   });
@@ -88,11 +88,11 @@ describe('Async Actions', () => {
     // Here's an example call to nock.
     // nock('http://example.com/')
     //   .get('/courses')
-    //   .reply(200, { body: { courses: [{ id: 1, firstName: 'Cory', lastName: 'House'}] }});
+    //   .reply(200, [{ id: 1, firstName: 'Cory', lastName: 'House'}]);
 
     const expectedActions = [
       {type: types.BEGIN_AJAX_CALL},
-      {type: types.LOAD_COURSES_SUCCESS, body: { courses: [{id: 'clean-code', title: 'Clean Code'}]}}
+      {type: types.LOAD_COURSES_SUCCESS, courses: [{id: 'clean-code', title: 'Clean Code'}]}
     ];
 
     const store = mockStore({courses: []}, expectedActions);
@@ -103,4 +103,76 @@ describe('Async Actions', () => {
       done();
     });
   });
+
+  it('should create BEGIN_AJAX_CALL and CREATE_COURSE_SUCCESS when saving a new course', (done) => {
+    // Here's an example call to nock.
+    // nock('http://example.com/')
+    //   .post('/courses')
+    //   .reply(200, { id: 1, firstName: 'Cory', lastName: 'House'});
+
+    const course = {
+      title: 'Clean Code'
+    };
+
+    const expectedActions = [
+      {type: types.BEGIN_AJAX_CALL},
+      {type: types.CREATE_COURSE_SUCCESS, course: {id: 'Clean-Code', title: 'Clean Code'} }
+    ];
+
+    const store = mockStore({courses: []}, expectedActions);
+    store.dispatch(courseActions.saveCourse(course)).then(() => {
+      const actions = store.getActions();
+      expect(actions[0].type).toEqual(types.BEGIN_AJAX_CALL);
+      expect(actions[1].type).toEqual(types.CREATE_COURSE_SUCCESS);
+      done();
+    });
+  });
+
+  it('should create BEGIN_AJAX_CALL and UPDATE_COURSE_SUCCESS when saving a new course', (done) => {
+    // Here's an example call to nock.
+    // nock('http://example.com/')
+    //   .put('/courses/:id')
+    //   .reply(200, { id: 1, firstName: 'Cory', lastName: 'House'});
+
+    const course = {
+      id: 'clean-code',
+      title: 'Clean Code'
+    };
+
+    const expectedActions = [
+      {type: types.BEGIN_AJAX_CALL},
+      {type: types.UPDATE_COURSE_SUCCESS, course: {id: 'clean-code', title: 'Clean Code'} }
+    ];
+
+    const store = mockStore({courses: []}, expectedActions);
+    store.dispatch(courseActions.saveCourse(course)).then(() => {
+      const actions = store.getActions();
+      expect(actions[0].type).toEqual(types.BEGIN_AJAX_CALL);
+      expect(actions[1].type).toEqual(types.UPDATE_COURSE_SUCCESS);
+      done();
+    });
+  });
+
+  it('should create BEGIN_AJAX_CALL and DELETE_COURSE_SUCCESS when saving a new course', (done) => {
+    // Here's an example call to nock.
+    // nock('http://example.com/')
+    //   .delete('/courses/:id')
+    //   .reply(204);
+
+    const courseId = 'clean-code';
+
+    const expectedActions = [
+      {type: types.BEGIN_AJAX_CALL},
+      {type: types.DELETE_COURSE_SUCCESS, course: {id: 'clean-code', title: 'Clean Code'} }
+    ];
+
+    const store = mockStore({courses: []}, expectedActions);
+    store.dispatch(courseActions.deleteCourse(courseId)).then(() => {
+      const actions = store.getActions();
+      expect(actions[0].type).toEqual(types.BEGIN_AJAX_CALL);
+      expect(actions[1].type).toEqual(types.DELETE_COURSE_SUCCESS);
+      done();
+    });
+  });
+
 });
